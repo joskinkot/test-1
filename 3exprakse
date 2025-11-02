@@ -1,0 +1,79 @@
+from tkinter import *
+from tkinter import ttk
+
+
+#def points():
+    #сделать подсчет пунктов хз кааак  желательнр вывод в другое окно!
+def second_quest():
+    for widget in right_frame.winfo_children():
+        widget.destroy()
+    
+    question_label = ttk.Label(right_frame, text= "Ar ko atšķiras pilns sazarojumas ar nepilna?", font="20")
+    question_label.place(x=50, y=50)
+
+    ttk.Radiobutton(right_frame, text="Pilns sazarojums tiek izmantots tikai ciklos, bet nepilns — tikai ārpus cikliem.", value = 1,variable=selected_answer).place(x=50,y=120)
+    ttk.Radiobutton(right_frame, text="Pilns sazarojums paredz darbības gan tad, ja nosacījums ir patiess, gan tad, ja nepaties, bet nepilns — tikai tad, ja nosacījums ir patiess.", value = 2,variable=selected_answer).place(x=50,y=175)
+    ttk.Radiobutton(right_frame, text="Nepilns sazarojums paredz darbības tikai, ja nosacījums ir nepaties.",value =3,variable=selected_answer).place(x=50,y=230)
+    print(selected_answer.get())
+    third_question_btn = ttk.Button(text="Next question", command=third_question)
+    third_question_btn.place(x=675,y=350)
+def third_question():
+    for widget in right_frame.winfo_children():
+        widget.destroy()
+    question_label = ttk.Label(right_frame, text= "Kāda atšķirība starp for un while cikla operatoriem?", font="20")
+    question_label.place(x=50, y=50)
+
+    ttk.Radiobutton(right_frame, text= "For cikls parasti tiek izmantots, kad ir zināms iterāciju skaits, bet while cikls — kad nav iepriekš zināms, cik ilgi jāatkārto darbības.", value=1, variable=selected_answer).place(x=50,y=120)
+    ttk.Radiobutton(right_frame, text="For cikls vienmēr izpildās ātrāk nekā while cikls.", value =2, variable=selected_answer).place(x=50,y=175)
+    ttk.Radiobutton(right_frame, text= "While ciklu nevar izmantot, ja ir nosacījums, bet for var.", value= 3, variable = selected_answer).place(x=50,y=230) 
+    print(selected_answer.get())
+    fourth_question_btn =ttk.Button(text="Next question", command=fourth_question)
+    fourth_question_btn.place(x=675,y=350)
+def fourth_question():
+    for widget in right_frame.winfo_children():
+        widget.destroy()
+    question_label = ttk.Label(right_frame, text = "Kas ir cikla skaitītājs?", font="20")
+    question_label.place(x=50, y=50)
+
+    ttk.Radiobutton(right_frame, text= "Komanda, kas pārbauda, vai cikla nosacījums ir patiess.", value=1,variable=selected_answer).place(x=50,y=120)
+    ttk.Radiobutton(right_frame, text= "Funkcija, kas automātiski beidz ciklu pēc 10 atkārtojumiem.", value=2,variable=selected_answer).place(x=50,y=175)
+    ttk.Radiobutton(right_frame, text="Mainīgais, kas uzskaita, cik reizes cikls ir izpildījies.", value=3, variable=selected_answer).place(x=50,y=230)
+    print(selected_answer.get())
+    fifth_question_btn=ttk.Button(text="Next question", command=fifth_question)
+    fifth_question_btn.place(x=675,y=350)
+def fifth_question():
+    for widget in right_frame.winfo_children():
+        widget.destroy()
+    question_label = ttk.Label(right_frame, text = "Kādus ciklus sauc par saistītiem jeb iekļautiem cikliem?", font="20")
+    question_label.place(x=50,y=50)
+    
+    ttk.Radiobutton(right_frame, text="Ciklus, kuri atkārtojas vienlaicīgi bez nosacījumiem.", value =1, variable=selected_answer).place(x=50,y=120)
+    ttk.Radiobutton(right_frame,text="Ciklus, kas atrodas cits cita iekšpusē, t.i., viens cikls darbojas cita cikla laikā.", value =2, variable=selected_answer).place(x=50,y=175)
+    ttk.Radiobutton(right_frame, text="Ciklus, kas nekad nebeidzas un ir savienoti ar mainīgo bez nosacījuma.", value=3, variable=selected_answer).place(x=50,y=230)
+    print(selected_answer.get())
+    results_btn = ttk.Button(text="Results", command=points)
+    results_btn.place(x=675,y=350)
+
+root = Tk()
+root.title("Test")
+root.geometry("800x400+500+300")
+
+selected_answer = IntVar()
+
+name_label = ttk.Label(root, text = "Aizpildi testu ", font = "Impact 20")
+name_label.place(x=35, y=20)
+
+right_frame = Frame(root, width=800, height=300)
+right_frame.place(x=0,y=50)  
+
+question_label = ttk.Label(right_frame, text = "Ar ko atšķiras lineārs algoritms no algoritma ar sazarojumiem?", font="20")
+question_label.place(x=50, y=50)
+
+ttk.Radiobutton(right_frame, text="Lineārs algoritms izpilda darbības secīgi, bet algoritms ar sazarojumiem paredz izvēli, kurš darbību ceļš tiks izpildīts.", value = 1,variable = selected_answer ).place(x=50, y = 120)
+ttk.Radiobutton(right_frame, text="Lineārs algoritms izmanto tikai ciklus, bet algoritms ar sazarojumiem izmanto tikai nosacījumus.", value =2,variable=selected_answer  ).place(x=50, y =175)
+ttk.Radiobutton(right_frame, text="Lineārs algoritms vienmēr darbojas ātrāk par algoritmu ar sazarojumiem.", value =3,variable=selected_answer).place(x=50,y=230)
+
+newQuest_btn = ttk.Button(text="Next question", command=second_quest)
+newQuest_btn.place(x=675,y=350)
+
+root.mainloop()
